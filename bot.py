@@ -28,12 +28,11 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.lower() == "give vinnie":
-        print('Starting vinnie download')
         await download_latest_vinnie()
-        print('Vinnie download complete!')
         dirname = os.path.dirname(__file__)
         filepath = os.path.join(dirname, 'latest_vinnie.mp4')
         await message.channel.send(file=discord.File(filepath))
+        os.remove(filepath)
 
 
 async def download_latest_vinnie():
